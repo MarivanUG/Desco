@@ -1,0 +1,79 @@
+{
+  "security": {
+    "pin": "54321"
+  },
+  "siteTitle": "Desco (U) Ltd",
+  "hero": {
+    "title": "Welcome to Desco Uganda",
+    "subtitle": "Touching Lives Through Excellence in Travel & Print",
+    "backgroundImage": "/images/Tours-Main-01-1024x446.webp",
+    "ctaText": "Explore Our Services",
+    "ctaLink": "#services"
+  },
+  "about": {
+    "title": "Who We Are",
+    "subtitle": "Your Trusted Partner in Uganda",
+    "text": "Desco (U) Ltd is a premier multi-service company dedicated to providing high-quality solutions in Printing, Travel Management, and General Supplies. We pride ourselves on our advanced technology, experienced team, and commitment to vibrant, precise results. Whether you are looking for an unforgettable safari adventure or professional corporate branding, Desco is your reliable partner to bring your vision to life.",
+    "image": "/images/Crested-Cranes.jpeg",
+    "stats": [
+      {
+        "number": "10+",
+        "label": "Years Experience"
+      },
+      {
+        "number": "500+",
+        "label": "Happy Clients"
+      },
+      {
+        "number": "100%",
+        "label": "Satisfaction"
+      }
+    ]
+  },
+  "services": [
+    {
+      "title": "Printing & Branding",
+      "description": "State-of-the-art digital and offset printing for business cards, brochures, banners, and large format needs. We ensure vibrant colors and precision.",
+      "icon": "🖨️",
+      "image": "/images/Printing-1024x585.webp"
+    },
+    {
+      "title": "Tours & Travel",
+      "description": "Experience the Pearl of Africa. We organize bespoke safaris, gorilla trekking, hotel bookings, and airport transfers for a seamless journey.",
+      "icon": "✈️",
+      "image": "/images/Travel-Management-1024x683.webp"
+    },
+    {
+      "title": "General Supplies",
+      "description": "We supply high-quality office stationery, equipment, and general merchandise to keep your business running smoothly.",
+      "icon": "📦",
+      "image": "/images/Gilafs.jpeg"
+    }
+  ],
+  "features": [
+    {
+      "title": "Quality Assurance",
+      "text": "We never compromise on quality. Our outputs are checked rigorously."
+    },
+    {
+      "title": "Timely Delivery",
+      "text": "We respect your deadlines and ensure quick turnaround times."
+    },
+    {
+      "title": "Customer Support",
+      "text": "Our dedicated team is available 24/7 to assist with your needs."
+    }
+  ],
+  "gallery": [
+    "/images/Lion.jpeg",
+    "/images/Crested-Cranes.jpeg",
+    "/images/Printing-1024x585.webp",
+    "/images/Travel-Management-1024x683.webp"
+  ],
+  "contact": {
+    "address": "Entebbe Rd, Opposite Freedom City",
+    "email": "info@descouganda.com",
+    "phone": "+256-772-943165 | +256-752-349827",
+    "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255281.19036236164!2d32.44672372576623!3d0.3130293673323755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbc0f9d74b39b%3A0x4538903dd96b6fec!2sKampala%2C%20Uganda!5e0!3m2!1sen!2sus!4v1645523456789!5m2!1sen!2sus"
+  }
+}

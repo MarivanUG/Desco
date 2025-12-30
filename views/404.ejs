@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - <%= content.siteTitle %></title>
+    <link rel="icon" href="/images/main-icon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .error-page {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #f4f4f4;
+            flex-direction: column;
+        }
+        .error-code { font-size: 6rem; font-weight: 800; color: #001f3f; line-height: 1; }
+        .error-msg { font-size: 1.5rem; margin-bottom: 2rem; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-code">404</div>
+        <p class="error-msg">Oops! The page you are looking for does not exist.</p>
+        <a href="/" class="btn btn-primary">Return Home</a>
+    </div>
+</body>
+</html>

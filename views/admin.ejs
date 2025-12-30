@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - <%= content.siteTitle %></title>
+    <link rel="icon" href="/images/main-icon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .admin-container { max-width: 900px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 0.5rem; color: #333; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
+        .section-title { margin-top: 2.5rem; border-bottom: 2px solid #e6b325; padding-bottom: 0.5rem; margin-bottom: 1.5rem; color: #001f3f; font-size: 1.5rem; }
+        .save-btn { background: #28a745; color: white; border: none; padding: 1rem 2rem; font-size: 1.1rem; cursor: pointer; border-radius: 4px; width: 100%; transition: background 0.3s; }
+        .save-btn:hover { background: #218838; }
+        .array-item { border: 1px solid #eee; padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 6px; background: #f9f9f9; position: relative; }
+        .array-item h4 { margin-top: 0; margin-bottom: 1rem; color: #666; font-size: 1.1rem; border-bottom: 1px solid #ddd; padding-bottom: 0.5rem; }
+        .help-text { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="admin-container">
+        <h1>Content Management</h1>
+        <p><a href="/">&larr; Back to Site</a></p>
+        
+        <form id="contentForm">
+            <!-- Security -->
+            <h3 class="section-title">Security Settings</h3>
+            <div class="form-group">
+                <label>Admin PIN (5 Digits)</label>
+                <input type="text" name="security.pin" value="<%= content.security ? content.security.pin : '12345' %>" maxlength="5" pattern="\d{5}" required>
+                <p class="help-text">Used to access this dashboard.</p>
+            </div>
+
+            <!-- General -->
+            <h3 class="section-title">General Settings</h3>
+            <div class="form-group">
+                <label>Site Title</label>
+                <input type="text" name="siteTitle" value="<%= content.siteTitle %>">
+            </div>
+
+            <!-- Hero -->
+            <h3 class="section-title">Hero Section</h3>
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="hero.title" value="<%= content.hero.title %>">
+            </div>
+            <div class="form-group">
+                <label>Subtitle</label>
+                <input type="text" name="hero.subtitle" value="<%= content.hero.subtitle %>">
+            </div>
+            <div class="form-group">
+                <label>Background Image URL</label>
+                <input type="text" name="hero.backgroundImage" value="<%= content.hero.backgroundImage %>">
+            </div>
+            <div class="form-group">
+                <label>CTA Text</label>
+                <input type="text" name="hero.ctaText" value="<%= content.hero.ctaText %>">
+            </div>
+            <div class="form-group">
+                <label>CTA Link</label>
+                <input type="text" name="hero.ctaLink" value="<%= content.hero.ctaLink %>">
+            </div>
+
+            <!-- About -->
+            <h3 class="section-title">About Section</h3>
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="about.title" value="<%= content.about.title %>">
+            </div>
+            <div class="form-group">
+                <label>Subtitle</label>
+                <input type="text" name="about.subtitle" value="<%= content.about.subtitle || '' %>">
+            </div>
+            <div class="form-group">
+                <label>Text</label>
+                <textarea name="about.text" rows="5"><%= content.about.text %></textarea>
+            </div>
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="text" name="about.image" value="<%= content.about.image %>">
+            </div>
+
+            <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">Key Stats</h4>
+            <% if (content.about.stats) { content.about.stats.forEach(function(stat, index) { %>
+                <div class="array-item">
+                    <div class="form-group">
+                        <label>Number (e.g., "10+")</label>
+                        <input type="text" name="about.stats[<%= index %>].number" value="<%= stat.number %>">
+                    </div>
+                    <div class="form-group">
+                        <label>Label (e.g., "Years Experience")</label>
+                        <input type="text" name="about.stats[<%= index %>].label" value="<%= stat.label %>">
+                    </div>
+                </div>
+            <% }); } %>
+
+            <!-- Services -->
+            <h3 class="section-title">Services</h3>
+            <div id="services-container">
+                <% content.services.forEach(function(service, index) { %>
+                    <div class="array-item">
+                        <h4>Service <%= index + 1 %></h4>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" name="services[<%= index %>].title" value="<%= service.title %>">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="services[<%= index %>].description" rows="3"><%= service.description %></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Icon (Emoji or FontAwesome class)</label>
+                            <input type="text" name="services[<%= index %>].icon" value="<%= service.icon || '' %>">
+                        </div>
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="text" name="services[<%= index %>].image" value="<%= service.image %>">
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+
+            <!-- Features -->
+            <h3 class="section-title">Why Choose Us (Features)</h3>
+            <div id="features-container">
+                <% if (content.features) { content.features.forEach(function(feature, index) { %>
+                    <div class="array-item">
+                        <h4>Feature <%= index + 1 %></h4>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" name="features[<%= index %>].title" value="<%= feature.title %>">
+                        </div>
+                        <div class="form-group">
+                            <label>Text</label>
+                            <textarea name="features[<%= index %>].text" rows="2"><%= feature.text %></textarea>
+                        </div>
+                    </div>
+                <% }); } %>
+            </div>
+
+            <!-- Gallery -->
+            <h3 class="section-title">Gallery Images</h3>
+            <div id="gallery-container">
+                <% if (content.gallery) { content.gallery.forEach(function(img, index) { %>
+                    <div class="form-group">
+                        <label>Image URL <%= index + 1 %></label>
+                        <input type="text" name="gallery[<%= index %>]" value="<%= img %>">
+                    </div>
+                <% }); } %>
+            </div>
+
+            <!-- Contact -->
+            <h3 class="section-title">Contact Info</h3>
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" name="contact.address" value="<%= content.contact.address %>">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" name="contact.email" value="<%= content.contact.email %>">
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" name="contact.phone" value="<%= content.contact.phone %>">
+            </div>
+            <div class="form-group">
+                <label>Google Maps Embed URL</label>
+                <input type="text" name="contact.mapEmbed" value="<%= content.contact.mapEmbed || '' %>">
+                <p class="help-text">Paste the 'src' attribute from a Google Maps embed iframe.</p>
+            </div>
+
+            <button type="submit" class="save-btn">Save All Changes</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('contentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = {};
+
+            // Improved nested object builder
+            const setNestedValue = (obj, path, value) => {
+                // Remove array bracket notation for easier parsing (e.g. services[0].title -> services.0.title)
+                path = path.replace(/\[(\w+)\]/g, '.$1'); 
+                const keys = path.split('.');
+                let current = obj;
+                
+                for (let i = 0; i < keys.length - 1; i++) {
+                    const key = keys[i];
+                    const nextKey = keys[i+1];
+                    
+                    // If the next key is a number, we need an array here
+                    if (!current[key]) {
+                        current[key] = isNaN(nextKey) ? {} : [];
+                    }
+                    
+                    current = current[key];
+                }
+                current[keys[keys.length - 1]] = value;
+            };
+
+            for (let [key, value] of formData.entries()) {
+                setNestedValue(data, key, value);
+            }
+
+            // Clean up: Simple array handling for gallery (which might end up as an object with numeric keys)
+            if (data.gallery && !Array.isArray(data.gallery)) {
+                data.gallery = Object.values(data.gallery);
+            }
+            if (data.services && !Array.isArray(data.services)) {
+                data.services = Object.values(data.services);
+            }
+            if (data.features && !Array.isArray(data.features)) {
+                data.features = Object.values(data.features);
+            }
+            if (data.about && data.about.stats && !Array.isArray(data.about.stats)) {
+                data.about.stats = Object.values(data.about.stats);
+            }
+
+            try {
+                const response = await fetch('/api/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    alert('Content saved successfully!');
+                    location.reload();
+                } else {
+                    alert('Error saving content: ' + result.message);
+                }
+            } catch (err) {
+                alert('Network error: ' + err.message);
+            }
+        });
+    </script>
+</body>
+</html>
