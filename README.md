@@ -1,64 +1,48 @@
-# Desco (U) Ltd - Website Rebuild
+# Desco (U) Ltd - Website Recreation
 
-This project is a modern, responsive rebuild of the Desco Uganda website using Node.js, Express, and EJS. It features a file-based CMS (Content Management System) allowing for easy content updates without a database.
+This is a recreation of the Desco Uganda website using Node.js, Express, and EJS. It features a custom Admin Dashboard for content management.
 
-## 🚀 Features
+## 🚀 How to Run Locally
 
-- **Modern UI/UX:** Responsive design with parallax effects, animations, and a clean layout.
-- **Dynamic Content:** All text, images, and services are loaded from `content.json`.
-- **Admin Dashboard:** A secured (route-based) dashboard to edit website content directly.
-- **Asset Management:** Automated image scraping and local serving.
-- **No Database Required:** Uses JSON for data persistence, making it easy to deploy and backup.
-
-## 🛠️ Prerequisites
-
-- **Node.js** (v14 or higher)
-- **npm** (Node Package Manager)
-
-## 📦 Installation
-
-1.  **Navigate to the project directory:**
-    ```bash
-    cd d:\Recreated\Desco
-    ```
-
-2.  **Install dependencies:**
+1.  **Install Dependencies:**
     ```bash
     npm install
     ```
+2.  **Start the Server:**
+    ```bash
+    npm start
+    ```
+3.  **Visit the Site:**
+    Open `http://localhost:3000` in your browser.
 
-## 🏃‍♂️ Running the Application
+## 🔐 Admin Access
 
-### Development Mode (Auto-restart on change)
-```bash
-npm run dev
-```
+*   **Login URL:** Click the small **lock icon** 🔒 in the footer (next to the copyright).
+*   **Default PIN:** `12345`
+*   **Dashboard:** `/admin`
 
-### Production Mode
-```bash
-npm start
-```
+## 🌍 Deployment Guide (Recommended: Render.com)
 
-## 🖥️ Usage
+Because this application uses a Node.js server (`server.js`), it **cannot** be hosted on GitHub Pages or Netlify (which are for static sites) without significant code changes.
 
-1.  **View the Website:**
-    Open your browser and go to: [http://localhost:3000](http://localhost:3000)
+**We recommend using Render.com (it has a free tier):**
 
-2.  **Access Admin Dashboard:**
-    Go to: [http://localhost:3000/admin](http://localhost:3000/admin)
-    - You can edit the Site Title, Hero section, About Us, Services, Features, Gallery, and Contact info.
-    - Click **"Save All Changes"** to update the site instantly.
+1.  **Push to GitHub:** Ensure this code is in your GitHub repository.
+2.  **Sign up for Render:** Go to [dashboard.render.com](https://dashboard.render.com/) and log in with GitHub.
+3.  **New Web Service:** Click **"New +"** and select **"Web Service"**.
+4.  **Connect Repo:** Select your `Desco` repository.
+5.  **Configure:**
+    *   **Name:** `desco-uganda` (or similar)
+    *   **Runtime:** `Node`
+    *   **Build Command:** `npm install`
+    *   **Start Command:** `node server.js`
+6.  **Deploy:** Click **"Create Web Service"**.
 
-## 📂 Project Structure
+### ⚠️ Important Note on Data Persistence
 
-- `server.js` - Main application server.
-- `content.json` - Database file storing all website content.
-- `views/` - EJS templates for the frontend (`index.ejs`) and admin (`admin.ejs`).
-- `public/` - Static files (CSS, JS, Images).
-- `scrape.js` & `fetch_data.js` - Scripts used for initial content migration.
+On most free cloud platforms (Render Free Tier, Heroku, etc.), the **file system is ephemeral**. 
+This means that **changes made to `content.json` via the Admin Panel will reset** whenever the server restarts or you redeploy the app.
 
-## 🎨 Customization
-
-- **Styling:** Edit `public/css/style.css`.
-- **Logic:** Edit `public/js/script.js` for frontend interactions.
-- **Templates:** Edit files in `views/` to change the HTML structure.
+To make data changes permanent, you would need to:
+1.  Upgrade to a paid plan with a **Persistent Disk**.
+2.  Or, refactor the app to use a cloud database (like MongoDB Atlas).
